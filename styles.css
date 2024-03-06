@@ -1,0 +1,27 @@
+/* container */
+.responsive-container {
+    display:flex;
+    flex-wrap:wrap;
+  }
+  
+  /* columns */
+  .responsive-container > * {
+    width:100%;
+    padding:1rem;
+  }
+  
+  /* tablet breakpoint */
+  @media (min-width:500px) {
+      .responsive-container > * {
+          width: 50%;
+  }
+}
+  
+    article {
+      background-color: #EFACE6;
+      margin: 2%;
+    }
+    
+    .filter {
+      float: left;
+    }

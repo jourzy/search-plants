@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>How not to kill your houseplants!</h1>
+        <p>Use this app to find information on how to care for the most common houseplants.</p>
+        <p>You can use the search bar to search for a plant by it's name, or you can filter for plants according to their suitability.</p>
+      </header>
+      
+      <section id="searchArea">
+        <h3>Search for a plant</h3>
+        <input type="search" id="search" placeholder="Enter a plant name e.g. spider plant">
+      </section>
+      <section id="filterArea">
+        <h3>Filter for a plant</h3>
+        <section class="filter">
+          <label for="sun">Sun</label>
+          <select id="sun">
+            <option value="">All</option>
+          </select>
+        </section>
+        <section class="filter">
+          <label for="watering">Watering</label>
+          <select id="watering">
+            <option value="">All</option>
+          </select>
+        </section>
+        <section class="filter">
+           <label for="feeding">Feeding</label>
+           <select id="feeding">
+             <option value="">All</option>
+           </select>
+        </section>
+        <section class="filter">
+           <label for="humidity">Humidity</label>
+           <select id="humidity">
+             <option value="">All</option>
+           </select>
+        </section>
+      
+      </section>
+      <section id="displayArea" class="responsive-container"></section>
+
+    <script src="index.js"></script>
+
+        <!-- let plants = [
+            {name: "spider plant", sun: "partial sun", watering: "10-14 days", feeding: "monthly", temp: "18-27", humidity: "average"}, 
+            {name: "snake plant", sun: "sun", watering: "3-4 weeks", feeding: "6 weeks", temp: "21-32", humidity: "low"}, 
+            {name: "fiddle leaf fig", sun: "sun", watering: "7-10 days", feeding: "monthly", temp: "18-27", humidity: "average"}, 
+            {name: "monstera deliciosa", sun: "partial sun", watering: "7-10 days", feeding: "2 weeks", temp: "20-30", humidity: "high"}, 
+            {name: "rubber plant", sun: "sun", watering: "10-14 days", feeding: "2 weeks", temp: "15-29", humidity: "average"}, 
+            {name: "pothos", sun: "shade", watering: "10-14 days", feeding: "monthly", temp: "17-30", humidity: "average"}, 
+            {name: "cacti", sun: "sun", watering: "3-4 weeks", feeding: "monthly", temp: "21-29", humidity: "low"}, 
+            {name: "peace lily", sun: "shade", watering: "5-7 days", feeding: "6 weeks", temp: "18-29", humidity: "high"}, 
+            {name: "jade plant", sun: "sun", watering: "2-3 weeks", feeding: "2 weeks", temp: "18-24", humidity: "low"}, 
+            {name: "zz plant", sun: "shade", watering: "3-4 weeks", feeding: "8 weeks", temp: "18-26", humidity: "low"}, 
+            {name: "aloe vera", sun: "sun", watering: "3-4 weeks", feeding: "monthly", temp: "20-25", humidity: "low"}, 
+            {name: "succulents", sun: "sun", watering: "3-4 weeks", feeding: "monthly", temp: "21-29", humidity: "average"}, 
+            {name: "calathea", sun: "shade", watering: "5-7 days", feeding: "monthly", temp: "18-27", humidity: "high"}, 
+            {name: "anthurium", sun: "partial sun", watering: "7-10 days", feeding: "6 weeks", temp: "18-27", humidity: "high"}, 
+            {name: "kentia palm", sun: "shade", watering: "7-10 days", feeding: "2 weeks", temp: "18-27", humidity: "average"}, 
+            {name: "string of pearls", sun: "sun", watering: "3-4 weeks", feeding: "2 weeks", temp: "18-27", humidity: "low"}, 
+            {name: "boston fern", sun: "shade", watering: "5-7 days", feeding: "monthly", temp: "18-27", humidity: "high"}, 
+            {name: "philodendron", sun: "shade", watering: "7-10 days", feeding: "6 weeks", temp: "18-27", humidity: "high"}
+        ];
+
+        console.log(plants);
+
+        console.log(plants[0].name);
+
+        
+        var keys = [];
+        for (var key in plants[0]) {
+            keys.push(key);
+        }
+
+        console.log("keys: "+keys);
+        console.log("hello");
+    </script> -->
+</body>
+</html>
