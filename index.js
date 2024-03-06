@@ -144,7 +144,7 @@ function displayObjects(arrayOfObjects) {
 displayObjects(plants);
 
 let selectedFilters = {};
-let plantNames = [];
+
 
 function filterDisplay() {
     let keyId = this.getAttribute("id");
@@ -156,6 +156,7 @@ function filterDisplay() {
     console.log(selectedFilters);
     // create a filtered array that is a copy of original array of objects
     let filteredPlants = plants;
+    //******************* filtered plants is not renewing!!!! */
     console.log(filteredPlants);
     // loop through plants from last to first
     for (let i=filteredPlants.length-1; i>=0 ; i--) {
@@ -190,9 +191,7 @@ function filterDisplay() {
         console.log(filteredPlants);
     }
 }
-        
-        
-    
+ 
     // loop through selected filters j
     // if plant[i]key === sf[j]key and plant[i] property !== selectedfilter[j]property:
             //remove plant from plant array
@@ -201,51 +200,8 @@ function filterDisplay() {
             // go through all articles, if article id is in the filtered list, show else display none
             // display objects(filtered array)
 
-  
-
-  
-  
-
-
 const selectList = document.querySelectorAll("select");
 selectList.forEach(elem => elem.addEventListener("change", filterDisplay))
-
-
-
-function filterResults() {
-    console.log(selectedFilters);
-    console.log(Object.entries(selectedFilters));
-    for (let [key, value] of Object.entries(selectedFilters)) {
-        console.log(selectedFilters[key]);
-        console.log(selectedFilters[value]);
-        for (plant in plants) {
-            console.log(plant)
-            console.log(plant.name)
-            for (let [key, value] of Object.entries(plant)) {
-                console.log(Object.entries(plant));
-                console.log(plant[key]);
-                console.log(plant[value]);
-                if (plant[key]==selectedFilters[key] && 
-                    plant[value]==selectedFilters[value]) {
-                        console.log(plant.name);
-                }
-            }
-        }
-      }
-}
-
-
-
-
-    // for (let [key,value] of Object.entries(plant)) {
-    //   for (let [key,value] of Object.entries(selected)) {
-    //     if (plant.key === selected.key && plant.value === selected.value) {
-    //       //count the number of times each plant name does this if same number as keys in selected, add to list
-    //     }    
-    //   }
-    // }
-
-
 
 // console.log(plants[3].name);
 
@@ -259,40 +215,6 @@ const plantsNames = plants.map(plant => plant.name);
 
 const plantsAvgHumidity = plants.filter(plant => plant.humidity === "average");
 // console.log(plantsAvgHumidity);
-
- 
-  
-//   let filterKeys = new Set(Object.keys(selected));
-//   result = plants.map(plant => Object.keys(plant).filter(key => filterKeys.has(key)));
-
-//   console.log(result);
-
-
-
-
-
-
-
-
-
-
-    
-  
-  // something wrong with this function!!!!!!!!!!!!!!!!
-  // let filteredPlants = plants.filter(function (el) {
-  //   for (let [key, value] of Object.entries(selected)) {
-  //     if (selected[key] && el[key]===selected[key]) {
-  //       return el;
-  //     }}  } ) // end of filter function
-  // console.log(filteredPlants);
-  // }) )
-  
-
-
-  // let filteredPlants = plants.filter(plant => plant[id] === optionValue);
-  // displayObjects(filteredPlants);
-  // console.log(filteredPlants);
-
 
 
 // find the number of boxes inside display area
@@ -317,13 +239,3 @@ if (emma) {
 else {
     console.log("empty is false")
 }
-
-
-
-
-
-
-
-
-
-
