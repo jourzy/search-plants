@@ -1,5 +1,6 @@
 console.clear();
 
+// array of objects
 const plants = [
   {name: "spider plant", sun: "partial sun", watering: "10-14 days", feeding: "monthly", temp: "18-27", humidity: "average"}, 
   {name: "snake plant", sun: "sun", watering: "3-4 weeks", feeding: "6 weeks", temp: "21-32", humidity: "low"}, 
@@ -21,7 +22,6 @@ const plants = [
   {name: "philodendron", sun: "shade", watering: "7-10 days", feeding: "6 weeks", temp: "18-27", humidity: "high"}
 ];
 
-// console.log(plants);
 
 // list the available attributes (keys) for each plant
 
@@ -110,100 +110,127 @@ addOptions(plantsValues, selections);
 function displayObjects(arrayOfObjects) {
   const displayArea = document.getElementById("displayArea");
   displayArea.innerHTML = "";
-  for (let object of arrayOfObjects) {
-    let box = document.createElement("article");
-    box.setAttribute("id", object.name);
-    // box.className = "responsive";
-    displayArea.appendChild(box);
-    let title = document.createElement("h3");
-    title.textContent = object.name;
-    box.appendChild(title);    
-    let image = document.createElement("img");
-    let src = object.name;
-    image.src = `${src}.png`;
-    image.alt = src;
-    box.appendChild(image);
-    let sun = document.createElement("p");
-    sun.textContent = `Sun: ${object.sun}`;
-    box.appendChild(sun);
-    let watering = document.createElement("p");
-    watering.textContent = `Watering: ${object.watering}`;
-    box.appendChild(watering);
-    let feeding = document.createElement("p");
-    feeding.textContent = `Feeding: ${object.feeding}`;
-    box.appendChild(feeding);
-    let temp = document.createElement("p");
-    temp.textContent = `Temperature: ${object.temp}`;
-    box.appendChild(temp);
-    let humidity = document.createElement("p"); 
-    humidity.textContent = `Humidity: ${object.humidity}`;
-    box.appendChild(humidity);
+  if (arrayOfObjects.length===0) {
+    displayArea.textContent = "No plants meet this criteria";
+    console.log("no plants left");
+  }
+  else {
+    for (let object of arrayOfObjects) {
+      let box = document.createElement("article");
+      box.setAttribute("id", object.name);
+      // box.className = "responsive";
+      displayArea.appendChild(box);
+      let title = document.createElement("h3");
+      title.textContent = object.name;
+      box.appendChild(title);    
+      let image = document.createElement("img");
+      let src = object.name;
+      //image.src = `${src}.png`;
+      //image.alt = src;
+      box.appendChild(image);
+      let sun = document.createElement("p");
+      sun.textContent = `Sun: ${object.sun}`;
+      box.appendChild(sun);
+      let watering = document.createElement("p");
+      watering.textContent = `Watering: ${object.watering}`;
+      box.appendChild(watering);
+      let feeding = document.createElement("p");
+      feeding.textContent = `Feeding: ${object.feeding}`;
+      box.appendChild(feeding);
+      let temp = document.createElement("p");
+      temp.textContent = `Temperature: ${object.temp}`;
+      box.appendChild(temp);
+      let humidity = document.createElement("p"); 
+      humidity.textContent = `Humidity: ${object.humidity}`;
+      box.appendChild(humidity);
+  }
   }
 }
 
 displayObjects(plants);
 
 let selectedFilters = {};
+let filteredArray = [];
 
-
+// i tried to add a parameter but it didnt work when i ran it
+// when the user changes the select elements, this function filters the output according to their selections
 function filterDisplay() {
+    // storing the id of the select element (which corresponds to the keys in the plant object)
     let keyId = this.getAttribute("id");
-    // console.log(`element id: ${keyId}`);
+    // storing their chosen option for filtering
     let optionValue = this.value;
-    // console.log(`option value: ${optionValue}`);
+    // storing this key/value pair in the selectedFilters object
     selectedFilters[keyId] = optionValue;
-    // console.log(selectedFilters);
+    // checking this in the console
+    console.log("filters:");
     console.log(selectedFilters);
+
     // create a filtered array that is a copy of original array of objects
-    let filteredPlants = plants;
+    // this worked with fix of || {}
+    filteredArray = plants.map(a => {return {...a}});
+
+    // didnt work issues: 
+    // Uncaught TypeError: Cannot convert undefined or null to object at Function.entries (<anonymous>)
+    // let filteredArray = JSON.parse(JSON.stringify(plants));
+
+    // didnt work
+    // let filteredArray = [];
+    // filteredArray.map(plants);
+
+    // didnt work issues: 
+    // Uncaught TypeError: Cannot convert undefined or null to object at Function.entries (<anonymous>)
+    // let filteredArray = [];
+    // for (i = 0; i < plants.length; i++) {
+    //   filteredArray[i] = plants[i];
+    // }
+
+    // this clone didnt work
+    // Uncaught TypeError: Cannot convert undefined or null to object at Function.entries (<anonymous>)
+    // let filteredArray = [...plants];
+
     //******************* filtered plants is not renewing!!!! */
-    console.log(filteredPlants);
-    // loop through plants from last to first
-    for (let i=filteredPlants.length-1; i>=0 ; i--) {
+    //filteredArray = plants; // this is not working second time around 
+    
+    // checking filteredArray in the console
+    console.log("filtered array: "); 
+    console.log(filteredArray);
+
+    // loop through plants from last to first (so splicing function does not skip one)
+    for (let i=filteredArray.length-1; i>=0 ; i--) {
         // loop through selected filters
-        // returns true or false
-        //console.log(filteredPlants[i].feeding === "6 weeks");
         for (let [ key, value ] of Object.entries(selectedFilters)) {
+          // if a value exists for both
             if (key && value) {
-                console.log(`${value} is not empty`);
-                for (let [k, v] of Object.entries(filteredPlants[i])) {
-                    // console.log(`filter key is ${key}`)
-                    // console.log(`filter value is ${value}`)
-                    // console.log(`plant key is ${k}`)
-                    // console.log(`plant value is ${v}`)
+                // why did this fix work - || {}
+                // loop through each key/value pair in the filteredArray
+                for (let [k, v] of Object.entries(filteredArray[i] || {})) {    // this has become a problem when trying to clone plants into filterd array
+                    // if the keys match but the values do not match
                     if (key === k && value !== v) {
-                        filteredPlants.splice(i, 1);
+                      // remove the item from the filteredArray
+                      filteredArray.splice(i, 1);
                     }
                 }
             }
+            // if there is not a value for both the key/value
             else {
-                console.log(`${value} IS empty`);
+                // skip to next one
                 continue;
             }           
         }
-        }
-    if (filteredPlants.length === 0) {
-        console.log("no plants left");
     }
-    else {
-        displayObjects(filteredPlants);
+    // update the output based on plants that match the filters
+    displayObjects(filteredArray);
 
-        console.log(filteredPlants);
-    }
+    // check output in console
+    console.log(filteredArray);
 }
  
-    // loop through selected filters j
-    // if plant[i]key === sf[j]key and plant[i] property !== selectedfilter[j]property:
-            //remove plant from plant array
-            // end up with array of filtered plants
-            // take plant names from this list (map function)
-            // go through all articles, if article id is in the filtered list, show else display none
-            // display objects(filtered array)
-
+// create an array of select elements that we can loop through with forEach function
 const selectList = document.querySelectorAll("select");
+// we can use forEach function to add event lsitener to all these select elements
 selectList.forEach(elem => elem.addEventListener("change", filterDisplay))
 
-// console.log(plants[3].name);
+
 
 // loops through each object in array and outputs the name
 // plants.forEach(plant => console.log(plant.name));
@@ -227,15 +254,4 @@ var numberOfChildren = element.getElementsByTagName('article').length
 // const box = document.getElementById("aloe vera");
 // console.log(selections)
 
-// selectionsArray = document.querySelectorAll("select");
-// console.log(selectionsArray)
 
-
-
-const emma = "";
-if (emma) {
-    console.log("empty is still true")
-}
-else {
-    console.log("empty is false")
-}
