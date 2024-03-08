@@ -201,9 +201,10 @@ function filterDisplay() {
         for (let [ key, value ] of Object.entries(selectedFilters)) {
           // if a value exists for both
             if (key && value) {
-                // why did this fix work - || {}
+                // Uncaught TypeError: Cannot convert undefined or null to object at Function.entries (<anonymous>)
+                // this fix worked: || {}  - not sure why?
                 // loop through each key/value pair in the filteredArray
-                for (let [k, v] of Object.entries(filteredArray[i] || {})) {    // this has become a problem when trying to clone plants into filterd array
+                for (let [k, v] of Object.entries(filteredArray[i] || {})) {
                     // if the keys match but the values do not match
                     if (key === k && value !== v) {
                       // remove the item from the filteredArray
@@ -253,5 +254,16 @@ var numberOfChildren = element.getElementsByTagName('article').length
 
 // const box = document.getElementById("aloe vera");
 // console.log(selections)
+
+
+
+// search for a plant
+
+// on change search bar
+// reset all filters to all??
+// use js search bar tutorial.
+// instead of showing the name it filters the articles
+
+
 
 
