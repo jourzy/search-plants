@@ -131,18 +131,25 @@ function displayObjects(arrayOfObjects) {
     console.log("no plants left");
   }
   else {
+    // for each object in the array
     for (let object of arrayOfObjects) {
+      // create an article element
       let box = document.createElement("article");
+      // set id attribute to the name of the object
       box.setAttribute("id", object.name);
+      // append to the display area
       displayArea.appendChild(box);
+      // add a title of the object name
       let title = document.createElement("h3");
       title.textContent = object.name;
-      box.appendChild(title);    
+      box.appendChild(title);  
+      // add an image of the object --- I did not get time to save the images  
       let image = document.createElement("img");
       let src = object.name;
       //image.src = `${src}.png`;
       //image.alt = src;
       box.appendChild(image);
+      // add the descriptions of the object properties to paragraph elements
       let sun = document.createElement("p");
       sun.textContent = `Sun: ${object.sun}`;
       box.appendChild(sun);
