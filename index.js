@@ -108,20 +108,29 @@ const selections = document.getElementsByTagName("select");
 // call the function to add the options to all the select elements
 addOptions(plantsValues, selections);
 
+function makeElement(tag, name) {
+
+}
+
+
+
 // create some helper functions to reduce repetition of code
 function displayObjects(arrayOfObjects) {
   const displayArea = document.getElementById("displayArea");
   // clear the display every time this function is called
   displayArea.innerHTML = "";
   if (arrayOfObjects.length===0) {
-    displayArea.textContent = "No plants meet this criteria";
+    const noResults = document.createElement("p");
+    noResults.textContent = "No plants meet this criteria";
+    noResults.style.color="red";
+    noResults.style.textAlign="center";
+    displayArea.appendChild(noResults);
     console.log("no plants left");
   }
   else {
     for (let object of arrayOfObjects) {
       let box = document.createElement("article");
       box.setAttribute("id", object.name);
-      // box.className = "responsive";
       displayArea.appendChild(box);
       let title = document.createElement("h3");
       title.textContent = object.name;

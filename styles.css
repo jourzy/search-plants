@@ -58,6 +58,7 @@ h1 {
     }
 
     .container {
+      background-color: pink;
       padding-top: 1rem;
       max-width: 100%;
       grid-template-columns: 1fr 1fr;
