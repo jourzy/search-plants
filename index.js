@@ -108,10 +108,6 @@ const selections = document.getElementsByTagName("select");
 // call the function to add the options to all the select elements
 addOptions(plantsValues, selections);
 
-function makeElement(tag, name) {
-
-}
-
 
 
 // create some helper functions to reduce repetition of code
@@ -119,12 +115,19 @@ function displayObjects(arrayOfObjects) {
   const displayArea = document.getElementById("displayArea");
   // clear the display every time this function is called
   displayArea.innerHTML = "";
+  // if there are no results
   if (arrayOfObjects.length===0) {
+    // create a paragraph element
     const noResults = document.createElement("p");
+    // add message to paragraph
     noResults.textContent = "No plants meet this criteria";
+    // font is red
     noResults.style.color="red";
+    // centre the message
     noResults.style.textAlign="center";
+    // append to output area
     displayArea.appendChild(noResults);
+    // console log output
     console.log("no plants left");
   }
   else {
