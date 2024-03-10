@@ -73,8 +73,6 @@ function getValues(allKeys, arrayOfObjects) {
 const plantsValues = getValues(plantsKeys, plants);
 // console.log(plantsValues);
 
-// put all select elements into an object
-const selections = document.getElementsByTagName("select");
 
 // function to add options to the select elements
 function addOptions(arrayOfObjects, selections) {
@@ -104,11 +102,16 @@ function addOptions(arrayOfObjects, selections) {
 }
 }
 
+// put all select elements into an object
+const selections = document.getElementsByTagName("select");
+
+// call the function to add the options to all the select elements
 addOptions(plantsValues, selections);
 
 // create some helper functions to reduce repetition of code
 function displayObjects(arrayOfObjects) {
   const displayArea = document.getElementById("displayArea");
+  // clear the display every time this function is called
   displayArea.innerHTML = "";
   if (arrayOfObjects.length===0) {
     displayArea.textContent = "No plants meet this criteria";
@@ -147,12 +150,15 @@ function displayObjects(arrayOfObjects) {
   }
 }
 
+// call the function to display the plants
 displayObjects(plants);
 
+// initialise an object that will store the users' selections to filter the houseplants
 let selectedFilters = {};
+// initialise an array that will copy the original plants array and be used to filter the output
 let filteredArray = [];
 
-// i tried to add a parameter but it didnt work when i ran it
+
 // when the user changes the select elements, this function filters the output according to their selections
 function filterDisplay() {
     // storing the id of the select element (which corresponds to the keys in the plant object)
@@ -168,28 +174,6 @@ function filterDisplay() {
     // create a filtered array that is a copy of original array of objects
     // this worked with fix of || {}
     filteredArray = plants.map(a => {return {...a}});
-
-    // didnt work issues: 
-    // Uncaught TypeError: Cannot convert undefined or null to object at Function.entries (<anonymous>)
-    // let filteredArray = JSON.parse(JSON.stringify(plants));
-
-    // didnt work
-    // let filteredArray = [];
-    // filteredArray.map(plants);
-
-    // didnt work issues: 
-    // Uncaught TypeError: Cannot convert undefined or null to object at Function.entries (<anonymous>)
-    // let filteredArray = [];
-    // for (i = 0; i < plants.length; i++) {
-    //   filteredArray[i] = plants[i];
-    // }
-
-    // this clone didnt work
-    // Uncaught TypeError: Cannot convert undefined or null to object at Function.entries (<anonymous>)
-    // let filteredArray = [...plants];
-
-    //******************* filtered plants is not renewing!!!! */
-    //filteredArray = plants; // this is not working second time around 
     
     // checking filteredArray in the console
     console.log("filtered array: "); 
@@ -228,26 +212,47 @@ function filterDisplay() {
  
 // create an array of select elements that we can loop through with forEach function
 const selectList = document.querySelectorAll("select");
-// we can use forEach function to add event lsitener to all these select elements
+// we can use forEach function to add event listener to all these select elements
 selectList.forEach(elem => elem.addEventListener("change", filterDisplay))
 
 
+    // didnt work issues: 
+    // Uncaught TypeError: Cannot convert undefined or null to object at Function.entries (<anonymous>)
+    // let filteredArray = JSON.parse(JSON.stringify(plants));
+
+    // didnt work
+    // let filteredArray = [];
+    // filteredArray.map(plants);
+
+    // didnt work issues: 
+    // Uncaught TypeError: Cannot convert undefined or null to object at Function.entries (<anonymous>)
+    // let filteredArray = [];
+    // for (i = 0; i < plants.length; i++) {
+    //   filteredArray[i] = plants[i];
+    // }
+
+    // this clone didnt work
+    // Uncaught TypeError: Cannot convert undefined or null to object at Function.entries (<anonymous>)
+    // let filteredArray = [...plants];
+
+    //******************* filtered plants is not renewing!!!! */
+    //filteredArray = plants; // this is not working second time around 
 
 // loops through each object in array and outputs the name
 // plants.forEach(plant => console.log(plant.name));
 
-const plantsNames = plants.map(plant => plant.name);
+// const plantsNames = plants.map(plant => plant.name);
 
 // console.log(plantsNames);
 
 
-const plantsAvgHumidity = plants.filter(plant => plant.humidity === "average");
+// const plantsAvgHumidity = plants.filter(plant => plant.humidity === "average");
 // console.log(plantsAvgHumidity);
 
 
 // find the number of boxes inside display area
-var element = document.getElementById("displayArea");
-var numberOfChildren = element.getElementsByTagName('article').length
+// var element = document.getElementById("displayArea");
+// var numberOfChildren = element.getElementsByTagName('article').length
 // console.log(numberOfChildren)
 
 // console.log(plants[3].name);
