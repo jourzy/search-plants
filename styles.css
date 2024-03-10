@@ -89,14 +89,10 @@ h1 {
 
   /* large screen breakpoint */
   @media (min-width:992px) {
-    article {
-        
-}
+
 }
 
   /* XL screen breakpoint */
   @media (min-width:1200px) {
-    article {
-        
-}
+
 }
